@@ -37,19 +37,19 @@ Actual stuff:
 
 # How to run application:
 
-Requirments:
+Requirements:
 - gradle 4+
 - Java 11
 - installed PostgresDb (could be deployed on docker on even remote, I'd recommend Postgres official image from DockerHub)
 
-After that, db properties has to be provided (here is example, could be changed to postgres):
-**db-test.properties**
+After that, db properties has to be provided (here is example, could be changed to h2 as well):
+**db.properties**
 ```
-fodmap.db.driver=org.h2.Driver
-fodmap.db.url=jdbc:h2:mem:testdb
-fodmap.db.username=sa
-fodmap.db.password=
-org.hibernate.dialect=org.hibernate.dialect.H2Dialect
+fodmap.db.driver=org.postgresql.Driver
+fodmap.db.url=jdbc:postgresql://172.17.0.2:5432/postgres
+fodmap.db.username=postgres
+fodmap.db.password=1234
+org.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 hibernate.jdbc.batch_size=20
 ```
 
