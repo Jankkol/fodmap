@@ -7,14 +7,13 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
     <changeSet id="201808301509" author="jank">
         <comment>Test if everything works fine.</comment>
-        <createTable tableName="testTable">
-            <column name="id" type="int">
+        <createTable tableName="INGREDIENT">
+            <column name="ID" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(50)">
+            <column name="INGREDIENT" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="active" type="boolean" defaultValueBoolean="true"/>
         </createTable>
     </changeSet>
 

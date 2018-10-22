@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -14,6 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Objects;
 import java.util.Properties;
 
 import static org.hibernate.cfg.AvailableSettings.*;
@@ -22,6 +24,7 @@ import static org.hibernate.cfg.AvailableSettings.*;
 @ComponentScan("com.jankkol.fodmap")
 @PropertySource(value = "classpath:/application.properties")
 @PropertySource(value = "classpath:/db.properties")
+@EnableJpaRepositories
 @EnableTransactionManagement
 public class FodmapConfiguration {
 
@@ -34,7 +37,7 @@ public class FodmapConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource(env));
-        em.setPackagesToScan(new String[] {"com.jankkol.fodmap"});
+        em.setPackagesToScan("com.jankkol.fodmap");
         em.setJpaProperties(hibernateProperties());
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -45,7 +48,7 @@ public class FodmapConfiguration {
     @Autowired
     public DataSource dataSource(Environment env) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("fodmap.db.driver"));
+        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("fodmap.db.driver")));
         dataSource.setUrl(env.getProperty("fodmap.db.url"));
         dataSource.setUsername(env.getProperty("fodmap.db.username"));
         dataSource.setPassword(env.getProperty("fodmap.db.password"));
