@@ -11,10 +11,13 @@
             <column name="ID" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="INGREDIENT" type="varchar(50)">
+            <column name="NAME" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="00000000000000" author="jank" dbms="postgresql,oracle">
+        <createSequence sequenceName="hibernate_sequence" startValue="20000" incrementBy="1"/>
     </changeSet>
 
 </databaseChangeLog>
