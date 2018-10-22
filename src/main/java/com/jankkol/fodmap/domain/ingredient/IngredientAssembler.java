@@ -9,4 +9,11 @@ public class IngredientAssembler {
         ingredient.setName(ingredientResource.getName());
         return ingredient;
     }
+
+    public static IngredientResource toDto(Ingredient ingredient){
+        IngredientResource ingredientResource = new IngredientResource();
+        ingredientResource.setId(ingredient.getId());
+        ingredientResource.setName(ingredient.getName());
+        return ingredientResource;
+    }
 }

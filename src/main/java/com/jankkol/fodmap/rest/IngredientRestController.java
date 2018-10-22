@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class IngredientRestController {
 
@@ -26,12 +28,12 @@ public class IngredientRestController {
     }
 
     @RequestMapping(path = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<IngredientResource> printHello(
+    public HttpEntity<?> printHello(
             @RequestParam(value = "name", defaultValue = "Carrot") String name) {
         LOG.info("Print hello world");
         IngredientResource ingredientResource = new IngredientResource();
         ingredientResource.setName(name);
         ingredientSLO.storeIngredient(ingredientResource);
-        return new ResponseEntity<>(ingredientResource, HttpStatus.OK);
+        return new ResponseEntity<>(ingredientSLO.findAll(), HttpStatus.OK);
     }
 }

@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class IngredientSLOImpl implements IngredientSLO {
 
@@ -18,5 +21,10 @@ public class IngredientSLOImpl implements IngredientSLO {
     @Override
     public void storeIngredient(IngredientResource ingredientResource) {
         ingredientRepository.save(IngredientAssembler.toEntity(ingredientResource));
+    }
+
+    @Override
+    public List<Ingredient> findAll() {
+        return ingredientRepository.findAll().stream().map(IngredientAssembler::toDto).collect(Collectors.toList());
     }
 }
