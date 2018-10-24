@@ -65,7 +65,7 @@ public class FodmapConfiguration {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty(DIALECT, env.getProperty("org.hibernate.dialect"));
         hibernateProperties.setProperty(STATEMENT_BATCH_SIZE, env.getProperty("hibernate.jdbc.batch_size"));
-        hibernateProperties.setProperty(HBM2DDL_AUTO, "none");
+        hibernateProperties.setProperty(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty(ENABLE_SYNONYMS, "true");
         return hibernateProperties;
     }
