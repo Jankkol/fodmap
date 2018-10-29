@@ -9,4 +9,8 @@ public interface IngredientSLO {
     void storeIngredient(IngredientResource ingredientResource);
 
     List<Ingredient> findAll();
+
+    void deleteIngredient(Long id);
+
+    Ingredient getIngredient(Long id);
 }

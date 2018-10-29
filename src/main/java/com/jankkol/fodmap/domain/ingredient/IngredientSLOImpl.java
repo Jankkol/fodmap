@@ -2,7 +2,6 @@ package com.jankkol.fodmap.domain.ingredient;
 
 import com.jankkol.fodmap.dto.IngredientResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +25,15 @@ public class IngredientSLOImpl implements IngredientSLO {
     @Override
     public List<Ingredient> findAll() {
         return ingredientRepository.findAll().stream().map(IngredientAssembler::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteIngredient(Long id) {
+        ingredientRepository.deleteById(id);
+    }
+
+    @Override
+    public Ingredient getIngredient(Long id) {
+        return ingredientRepository.getOne(id);
     }
 }
