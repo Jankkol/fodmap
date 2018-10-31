@@ -34,10 +34,9 @@ public class IngredientRestController {
         return new ResponseEntity<>(ingredientSLO.findAll(), HttpStatus.OK);
     }
 
-
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     public HttpEntity<?> addIngredient(
-            @RequestParam(value = "name", defaultValue = "Carrot") String name) {
+            @RequestParam(value = "name") String name) {
         IngredientResource ingredientResource = new IngredientResource();
         ingredientResource.setName(name);
         ingredientSLO.storeIngredient(ingredientResource);

@@ -3,6 +3,7 @@ package com.jankkol.fodmap.domain.ingredient;
 import com.jankkol.fodmap.dto.IngredientResource;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IngredientSLO {
 
@@ -12,5 +13,5 @@ public interface IngredientSLO {
 
     void deleteIngredient(Long id);
 
-    Ingredient getIngredient(Long id);
+    Optional<Ingredient> getIngredient(Long id);
 }
